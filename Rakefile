@@ -5,7 +5,7 @@ require 'rdoc/task'
 require 'rubygems/package_task'
 
 rdoc_opts = ["--exclude", "unit_tests/"]
-files = ["activemq_subscriber.rb", "CHANGELOG"]
+files = ["activemq_producer.rb", "CHANGELOG"]
 desc "Default: run unit tests"
 task :default => :test
 

@@ -14,12 +14,10 @@ class ActiveMQProducer
     @connection = @connection_factory.create_connection
     @session = @connection.create_session(false, Java::JavaxJms::Session::AUTO_ACKNOWLEDGE)
     if hash[:topic]
-      topic = Java::OrgApacheActivemqCommand::ActiveMQTopic.new hash[:topic]
-      destination = @session.createTopic topic
+      destination = @session.createTopic hash[:topic]
     end
     if hash[:queue]
-      queue = Java::OrgApacheActivemqCommand::ActiveMQQueue.new hash[:queue]
-      destination = @session.createQueue queue
+      destination = @session.createQueue hash[:queue]
     end
     @producer = @session.createProducer destination
     @connection.start
@@ -38,13 +36,12 @@ class ActiveMQProducer
     bytes = array
     bytes = array.pack('C*').to_java_bytes if array.is_a?(Array)
     message = @session.create_bytes_message
-    message.set_bytes = bytes
+    message.write_bytes bytes
     @producer.send message
   end
 
   def close
-    @subscriber.stop
-    @subscriber.close
+    @producer.close
     @session.stop
     @session.close
     @connection.stop
