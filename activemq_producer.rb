@@ -1,14 +1,13 @@
 require 'java'
 require 'activemq'
 
-# Class to subscribe to an ActiveMQ topic and present the messages nicely
+# Class to push to an ActiveMQ queue or topic
 class ActiveMQProducer
 
   # :call-seq:
   #   ActiveMQProducer.new(connection_string: "tcp://localhost:61616", queue: "some-queue")   -> Queue producer
   #   ActiveMQProducer.new(connection_string: "tcp://localhost:61616", topic: "some-topic")   -> Topic producer
   def initialize(hash)
-    @messages = []
     @connection_string = hash[:connection_string]
     @connection_factory = Java::OrgApacheActivemq::ActiveMQConnectionFactory.new(@connection_string)
     @connection = @connection_factory.create_connection
