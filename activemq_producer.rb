@@ -1,5 +1,5 @@
 require 'java'
-require 'activemq'
+require 'jruby/activemq'
 
 # Class to push to an ActiveMQ queue or topic
 class ActiveMQProducer

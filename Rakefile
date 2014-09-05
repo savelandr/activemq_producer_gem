@@ -26,12 +26,12 @@ update_spec = Gem::Specification.new do |spec|
   spec.description = "ActiveMQ topic or queue producer for testing convenience"
   spec.summary = "ActiveMQ topic producer"
   spec.name = "activemq_producer"
-  spec.version = "1.0.0"
+  spec.version = "1.0.1"
   spec.require_path = "."
   spec.rdoc_options = rdoc_opts
   spec.files = files
   spec.test_files = Dir.glob('unit_tests/*')
-  spec.add_dependency "jruby-activemq"
+  spec.add_dependency "jruby-activemq", ">= 5.10.0"
 end
 
 Gem::PackageTask.new(update_spec) do |spec|
