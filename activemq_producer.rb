@@ -24,7 +24,7 @@ class ActiveMQProducer
 
   def send_text_message(string)
     message = @session.create_text_message
-    message.set_text = string
+    message.set_text string
     @producer.send message
   end
 
